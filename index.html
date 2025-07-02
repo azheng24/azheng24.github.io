@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <title>Shepherd Tour Example</title>
 
-<link rel="stylesheet"
-  href="https://cdn.jsdelivr.net/npm/shepherd.js@13.0.0/dist/css/shepherd.css" />
-
-
+  <!-- ✅ Your Custom Stylesheet (should be placed AFTER the default one if it overrides it) -->
+  <link rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/shepherd.js@13.0.0/dist/css/shepherd.css" />
+  <link rel="stylesheet" href="shepherd.css" />
 </head>
 <body>
   <h1>Welcome to My Site</h1>
@@ -71,7 +71,7 @@
 
       tour.addStep({
         id: 'welcome',
-        title: 'Welcome to Main4',  // Use this for the top heading
+        title: 'Welcome to main4!',  // Use this for the top heading
         text: `
           <p><strong>Your central hub</strong> for managing everything from devices and tickets to cloud services and customer data.</p>
           <p>This quick tour will guide you through the layout and key features of the homepage, so you can hit the ground running.</p>
