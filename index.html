@@ -4,7 +4,8 @@
   <meta charset="UTF-8">
   <title>Shepherd Tour Example</title>
 
-  <link rel="stylesheet" href="shepherd.css" />
+<link rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/shepherd.js@13.0.0/dist/css/shepherd.css" />
 
 
 </head>
@@ -27,16 +28,18 @@
           cancelIcon: {
             enabled: true
           },
+          /**
           buttons: [
             {
               text: 'Back',
-              action: Shepherd.back
+              action: tour.back
             },
             {
               text: 'Next',
-              action: Shepherd.next
+              action: tour.next
             }
           ]
+            **/
         }
       });
 
@@ -51,7 +54,17 @@
         attachTo: {
           element: 'body > h1',
           on: 'bottom-start'
-        }
+        },
+        buttons: [
+          {
+            text: 'Next',
+            action: tour.next
+          },
+          {
+            text: 'Exit Tour',
+            action: tour.cancel
+          },
+        ]
       });
 
       tour.addStep({
