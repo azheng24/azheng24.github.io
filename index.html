@@ -41,8 +41,9 @@
           ]
             **/
         }
-      });
+       });
 
+       /**
       // step to a tour
       tour.addStep({
         // identifier
@@ -66,6 +67,27 @@
           },
         ]
       });
+      **/
+
+      tour.addStep({
+      id: 'welcome-step',
+      text: `
+        <h3>Welcome to Main4</h3>
+        <p><strong>Your central hub</strong> for managing everything from devices and tickets to cloud services and customer data.</p>
+        <p>This quick tour will guide you through the layout and key features of the homepage, so you can hit the ground running.</p>
+        <p>We’ll walk through the <em>search bar</em>, <em>navigation tabs</em>, <em>dashboard</em>, and some power features to help you work smarter.</p>
+      `,
+      attachTo: {
+        element: 'body > h1',  // Replace this with the correct selector on your homepage
+        on: 'bottom'
+      },
+      buttons: [
+        {
+          text: 'Let’s Start',
+          action: tour.next
+        }
+      ]
+    });
 
       tour.addStep({
         id: 'step-intro',
@@ -75,6 +97,8 @@
           on: 'bottom'
         }
       });
+
+
 
       tour.start();
     });
