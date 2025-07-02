@@ -19,6 +19,9 @@
 
     document.getElementById('start-tour').addEventListener('click', () => {
       const tour = new Shepherd.Tour({
+        // set tour options here
+        //--
+        // set options wanted for all steps
         defaultStepOptions: {
           scrollTo: true,
           cancelIcon: {
@@ -28,11 +31,11 @@
           buttons: [
             {
               text: 'Back',
-              action: tour.back
+              action: Shepherd.back
             },
             {
               text: 'Next',
-              action: tour.next
+              action: Shepherd.next
             }
           ]
         }
