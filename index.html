@@ -9,8 +9,8 @@
     href="https://cdn.jsdelivr.net/npm/shepherd.js@13.0.0/dist/css/shepherd.css" />
 </head>
 <body>
-  <h1 id="main-title">Welcome to My Site</h1>
-  <p id="intro-text">Here's a quick overview of what this page does.</p>
+  <h1>Welcome to My Site</h1>
+  <p>Here's a quick overview of what this page does.</p>
   <button id="start-tour">Start Tour</button>
 
   <!-- Shepherd Tour Script using ES Module -->
@@ -44,7 +44,7 @@
         id: 'step-title',
         text: 'This is your site title.',
         attachTo: {
-          element: '#main-title',
+          element: 'body > h1',
           on: 'bottom'
         }
       });
@@ -53,7 +53,7 @@
         id: 'step-intro',
         text: 'This is a paragraph explaining the page.',
         attachTo: {
-          element: '#intro-text',
+          element: 'body > p',
           on: 'bottom'
         }
       });
