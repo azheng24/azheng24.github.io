@@ -1,15 +1,63 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>My Shepherd Tour</title>
-  <link rel="stylesheet" href="https://unpkg.com/shepherd.js/dist/css/shepherd.css">
+  <meta charset="UTF-8">
+  <title>Shepherd Tour Example</title>
+  
+  <!-- Shepherd Styles via jsDelivr -->
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/shepherd.js@13.0.0/dist/css/shepherd.css"
+  />
 </head>
 <body>
   <h1 id="title">Welcome to My Site</h1>
-  <p id="intro">This is an example paragraph.</p>
+  <p id="intro">This is an introductory paragraph.</p>
   <button id="start-tour">Start Tour</button>
 
-  <script src="https://unpkg.com/shepherd.js/dist/js/shepherd.min.js"></script>
-  <script src="script.js"></script>
+  <!-- Shepherd JS via jsDelivr -->
+  <script type="module">
+    import Shepherd from 'https://cdn.jsdelivr.net/npm/shepherd.js@13.0.0/dist/esm/shepherd.mjs';
+
+    document.getElementById('start-tour').addEventListener('click', () => {
+      const tour = new Shepherd.Tour({
+        defaultStepOptions: {
+          scrollTo: true,
+          cancelIcon: { enabled: true },
+          classes: 'shadow-md bg-purple-dark',
+          buttons: [
+            {
+              text: 'Back',
+              action: Shepherd.back
+            },
+            {
+              text: 'Next',
+              action: Shepherd.next
+            }
+          ]
+        }
+      });
+
+      tour.addStep({
+        id: 'step-1',
+        text: 'This is the title of the page.',
+        attachTo: {
+          element: '#title',
+          on: 'bottom'
+        }
+      });
+
+      tour.addStep({
+        id: 'step-2',
+        text: 'This paragraph contains a basic description.',
+        attachTo: {
+          element: '#intro',
+          on: 'bottom'
+        }
+      });
+
+      tour.start();
+    });
+  </script>
 </body>
 </html>
