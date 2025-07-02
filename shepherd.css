@@ -1,18 +1,18 @@
 /* Tooltip box */
 .shepherd-element {
-  background: #2d2a55; /* deep purple */
+  background: #ffffff; /* white background */
   border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   max-width: 450px;
   padding: 1rem;
   z-index: 9999;
-  color: #f8f8f2; /* light text */
+  color: #000000; /* black text */
 }
 
 /* Buttons inside tooltip */
 .shepherd-button {
-  background: #ff79c6; /* hot pink */
-  color: #282a36;      /* dark background color */
+  background: #007bff; /* bootstrap blue */
+  color: #ffffff;      /* white text */
   padding: 0.6rem 1.6rem;
   border: none;
   border-radius: 6px;
@@ -23,31 +23,31 @@
 }
 
 .shepherd-button:hover {
-  background: #ff92d0;
+  background: #0056b3; /* darker blue on hover */
 }
 
-/* Secondary button (if used) */
+/* Secondary button */
 .shepherd-button.shepherd-button-secondary {
-  background: #6272a4; /* muted indigo */
-  color: #f8f8f2;
+  background: #f1f1f1;
+  color: #000;
 }
 
 .shepherd-button.shepherd-button-secondary:hover {
-  background: #7080b8;
+  background: #e0e0e0;
 }
 
-/* Modal overlay (dark background behind tooltip) */
+/* Modal overlay */
 .shepherd-modal-overlay-container.shepherd-modal-is-visible {
   opacity: 0.7;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.75);
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
-/* Tooltip title (if you use titles) */
+/* Tooltip title */
 .shepherd-title {
   font-size: 1.2rem;
   font-weight: bold;
-  color: #f1fa8c; /* bright yellow */
+  color: #000000; /* black title */
   margin-bottom: 0.5rem;
 }
 
@@ -55,14 +55,14 @@
 .shepherd-text {
   font-size: 1rem;
   line-height: 1.4;
-  color: #f8f8f2;
+  color: #000000; /* black body text */
 }
 
 /* Cancel (X) icon */
 .shepherd-cancel-icon {
-  color: #f1fa8c;
+  color: #999;
 }
 
 .shepherd-cancel-icon:hover {
-  color: #ffb86c;
+  color: #333;
 }
