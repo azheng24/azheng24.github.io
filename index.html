@@ -187,12 +187,15 @@
           element: 'body > header > nav > a:nth-child(2)',
           on: 'bottom'
         },
+        arrow: {
+          padding: 12
+        },
         buttons: [
           { text: 'Back', action: tour.back },
           { text: 'Next', action: tour.next },
         ]
       });
-      
+
       tour.addStep({
         id: 'ops-tab',
         title: 'Ops',
