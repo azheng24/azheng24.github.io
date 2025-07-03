@@ -86,6 +86,7 @@
       });
       **/
 
+
       tour.addStep({
         id: 'welcome',
         title: 'Welcome to main4!',
@@ -149,6 +150,20 @@
           },
         ]
       });
+
+      tour.addStep({
+        id: 'nav-tabs',
+        title: 'Navigation Tabs Overview',
+        text: `These are the primary navigation tabs. They give you access to the most important areas of Main4. We’ll go through them one by one.`,
+        attachTo: {
+          element: 'body > header > h1',
+          on: 'bottom'
+        },
+        buttons: [
+          { text: 'Next', action: tour.next }
+        ]
+      });
+
 
 
 
