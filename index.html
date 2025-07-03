@@ -192,6 +192,133 @@
           { text: 'Next', action: tour.next },
         ]
       });
+      
+      tour.addStep({
+        id: 'ops-tab',
+        title: 'Ops',
+        text: `Shared links for the whole company, including meeting minutes, reports, cloud storage, and more.`,
+        attachTo: {
+          element: 'body > header > nav > a:nth-child(3)',
+          on: 'bottom'
+        },
+        buttons: [
+          { text: 'Back', action: tour.back },
+          { text: 'Next', action: tour.next }
+        ]
+      });
+
+      tour.addStep({
+        id: 'support-tab',
+        title: 'Support',
+        text: `Resources engineers need: ticketing system, change requests, purchase orders, etc.`,
+        attachTo: {
+          element: 'body > header > nav > a:nth-child(4)',
+          on: 'bottom'
+        },
+        buttons: [
+          { text: 'Back', action: tour.back },
+          { text: 'Next', action: tour.next }
+        ]
+      });
+
+      tour.addStep({
+        id: 'voice-tab',
+        title: 'Voice',
+        text: `Everything related to phones and voice systems.`,
+        attachTo: {
+          element: 'body > header > nav > a:nth-child(5)',
+          on: 'bottom'
+        },
+        buttons: [
+          { text: 'Back', action: tour.back },
+          { text: 'Next', action: tour.next }
+        ]
+      });
+
+      tour.addStep({
+        id: 'circuits-tab',
+        title: 'Circuits',
+        text: `Provides access to infrastructure details like buildings, devices, subnets, and DNS domains for managing network connectivity.`,
+        attachTo: {
+          element: 'body > header > nav > a:nth-child(6)',
+          on: 'bottom'
+        },
+        buttons: [
+          { text: 'Back', action: tour.back },
+          { text: 'Next', action: tour.next }
+        ]
+      });
+
+      tour.addStep({
+        id: 'cloud-tab',
+        title: 'Cloud',
+        text: `Links and documentation related to cloud infrastructure.`,
+        attachTo: {
+          element: 'body > header > nav > a:nth-child(7)',
+          on: 'bottom'
+        },
+        buttons: [
+          { text: 'Back', action: tour.back },
+          { text: 'Next', action: tour.next }
+        ]
+      });
+
+      tour.addStep({
+        id: 'msp-tab',
+        title: 'MSP',
+        text: `Resources and information for Managed Service Providers (MSP).`,
+        attachTo: {
+          element: 'body > header > nav > a:nth-child(8)',
+          on: 'bottom'
+        },
+        buttons: [
+          { text: 'Back', action: tour.back },
+          { text: 'Next', action: tour.next }
+        ]
+      });
+
+      tour.addStep({
+        id: 'colo-tab',
+        title: 'Colo',
+        text: `Facility diagrams and power usage for the MTP colocation site.`,
+        attachTo: {
+          element: 'body > header > nav > a:nth-child(9)',
+          on: 'bottom'
+        },
+        buttons: [
+          { text: 'Back', action: tour.back },
+          { text: 'Next', action: tour.next }
+        ]
+      });
+
+      tour.addStep({
+        id: 'sales-tab',
+        title: 'Sales',
+        text: `Main4 resources used by the Sales team.`,
+        attachTo: {
+          element: 'body > header > nav > a:nth-child(10)',
+          on: 'bottom'
+        },
+        buttons: [
+          { text: 'Back', action: tour.back },
+          { text: 'Next', action: tour.next }
+        ]
+      });
+
+      tour.addStep({
+        id: 'bi-tab',
+        title: 'BI',
+        text: `BI = Business Information. Dashboards, tracking tools, and visualizations like Grafana.`,
+        attachTo: {
+          element: 'body > header > nav > a:nth-child(11)',
+          on: 'bottom'
+        },
+        buttons: [
+          { text: 'Back', action: tour.back },
+          { text: 'Finish', action: tour.complete }
+        ]
+      });
+
 
 
 
