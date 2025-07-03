@@ -96,15 +96,44 @@
         ]
       });
 
-
       tour.addStep({
-        id: 'step-intro',
-        text: 'This is a paragraph explaining the page.',
+        id: 'search-guide',
+        title: 'Using the Search Bar',
+        text: `
+          <p>The search bar in <strong>Main4</strong> is one of the most powerful tools for navigating the system.</p>
+          <p><strong>Three Primary Ways to Search:</strong></p>
+          <ol>
+            <li><strong>Model Prefix + Colon + Search Term</strong><br>
+              <em>Format:</em> <code>model:search_term</code><br>
+              <em>Example:</em> <code style="color:green;">address:alakea</code> – Finds all addresses containing “alakea”.
+            </li><br>
+            <li><strong>Slash + Table Name</strong><br>
+              <em>Format:</em> <code>/model</code><br>
+              <em>Example:</em> <code style="color:green;">/projects</code> – Navigates to the Projects table.
+            </li><br>
+            <li><strong>IP Address (Full or Partial)</strong><br>
+              <em>Examples:</em> <code style="color:green;">207.2.108.2</code>, <code style="color:green;">207.2.</code><br>
+              Finds matching subnets.
+            </li>
+          </ol>
+        `,
         attachTo: {
-          element: 'body > p',
+          element: 'body > p', // Replace with actual search bar CSS selector
           on: 'bottom'
-        }
+        },
+        buttons: [
+          {
+            text: 'Next',
+            action: tour.next
+          },
+          {
+            text: 'Back',
+            action: tour.back
+          }
+        ]
       });
+
+
 
 
 
