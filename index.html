@@ -44,48 +44,9 @@
           scrollTo: true,
           cancelIcon: {
             enabled: true
-          },
-          /**
-          buttons: [
-            {
-              text: 'Back',
-              action: tour.back
-            },
-            {
-              text: 'Next',
-              action: tour.next
-            }
-          ]
-            **/
+          }
         }
        });
-
-       /**
-      // step to a tour
-      tour.addStep({
-        // identifier
-        id: 'step-title',
-        arrow: {padding: 500},
-        // text shown
-        text: 'This is your site title.',
-        // where to attach
-        attachTo: {
-          element: 'body > h1',
-          on: 'bottom-start'
-        },
-        buttons: [
-          {
-            text: 'Next',
-            action: tour.next
-          },
-          {
-            text: 'Exit Tour',
-            action: tour.cancel
-          },
-        ]
-      });
-      **/
-
 
       tour.addStep({
         id: 'welcome',
@@ -102,10 +63,12 @@
             />
           </div>
         `,
+        /*
         attachTo: {
-          element: 'body > h1', // Adjust as needed
+          element: 'body > h1',  
           on: 'bottom'
         },
+        */
         buttons: [
           {
             text: 'Let’s Start',
