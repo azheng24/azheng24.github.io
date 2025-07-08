@@ -279,6 +279,21 @@
         ]
       });
 
+      //navigate to new page test
+      tour.addStep({
+        id: 'wiki2',
+        title: 'wiki new page',
+        text: `BI = Business Information. Dashboards, tracking tools, and visualizations like Grafana.`,
+        attachTo: {
+          element: 'body > header > nav > a:nth-child(11)', // #header > ul > li:nth-child(12)
+          on: 'bottom'
+        },
+        buttons: [
+          { text: 'Back', action: tour.back },
+          { text: 'Next Page', action: function () { window.location.href = '/next-page.html?shtc=t' ; }}
+        ]
+      });
+
       tour.start();
     });
   </script>

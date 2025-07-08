@@ -11,10 +11,6 @@
     <h1>Main4</h1>
     <nav class="nav-links">
       <a href="wiki.html">Wiki</a>
-      <a href="tools.html">Tools</a>
-      <a href="ops.html">Ops</a>
-      <a href="support.html">Support</a>
-      <!-- and so on -->
     </nav>
   </header>
 
@@ -24,3 +20,38 @@
   </main>
 </body>
 </html>
+
+<script src="https://cdn.jsdelivr.net/npm/shepherd.js@11.2.0/dist/js/shepherd.min.js">
+
+    // Check for the query parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const shouldTourContinue = urlParams.get('shtc');
+
+    if (shouldTourContinue === 't') {
+    const tour = new Shepherd.Tour({
+        useModalOverlay: true,
+        defaultStepOptions: {
+        scrollTo: true
+        }
+    });
+
+    // Define only the steps you want to show on this page
+    tour.addStep({
+        id: 'step6',
+        text: 'Welcome to page 2! The tour continues here.',
+        attachTo: {
+        element: 'body > header > h1',
+        on: 'top'
+        },
+        buttons: [
+        {
+            text: 'Finish',
+            action: tour.complete
+        }
+        ]
+    });
+
+    tour.start();
+    }
+
+</script>
