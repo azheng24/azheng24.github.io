@@ -113,6 +113,28 @@
       });
 
       tour.addStep({
+        id: 'type-step',
+        text: 'Please enter your username in the box below.',
+        attachTo: {
+          element: '#username',
+          on: 'bottom'
+        },
+        buttons: [
+          {
+            text: 'Continue',
+            action: function() {
+              const val = document.querySelector('#username').value;
+              if (val.trim()) {
+                tour.next();
+              } else {
+                alert('Please enter something before continuing.');
+              }
+            }
+          }
+        ]
+      });
+
+      tour.addStep({
         id: 'nav-tabs',
         title: 'Navigation Tabs Overview',
         text: `These are the primary navigation tabs. They give you access to the most important areas of Main4. We’ll go through them one by one.`,
