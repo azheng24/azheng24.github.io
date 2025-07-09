@@ -53,6 +53,14 @@
     import Shepherd from 'https://cdn.jsdelivr.net/npm/shepherd.js@13.0.0/dist/esm/shepherd.mjs';
 
     document.getElementById('start-tour').addEventListener('click', () => {
+
+      function speak(text) {
+        const msg = new SpeechSynthesisUtterance(text);
+        msg.lang = 'en-US';
+        speechSynthesis.cancel(); // Stop previous speech
+        speechSynthesis.speak(msg);
+      }
+
       const tour = new Shepherd.Tour({
         // set tour options here
         useModalOverlay: true,
@@ -80,6 +88,11 @@
             />
           </div>
         `,
+          when: {
+            show: function() {
+              speak('Welcome to the dashboard!');
+            }
+          },
         buttons: [
           {
             text: `Let’s Start`,
