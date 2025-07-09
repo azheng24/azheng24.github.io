@@ -138,6 +138,28 @@
       });
 
       tour.addStep({
+        id: 'verify-password',
+        text: 'Please enter the password to continue.',
+        attachTo: {
+          element: '#password',
+          on: 'bottom'
+        },
+        buttons: [
+          {
+            text: 'Continue',
+            action: function() {
+              const input = document.querySelector('#password').value;
+              if (input.trim() === 'servpac') {
+                tour.next();
+              } else {
+                alert('Incorrect password. Please try again.');
+              }
+            }
+          }
+        ]
+      });
+
+      tour.addStep({
         id: 'nav-tabs',
         title: 'Navigation Tabs Overview',
         text: `These are the primary navigation tabs. They give you access to the most important areas of Main4. We’ll go through them one by one.`,
