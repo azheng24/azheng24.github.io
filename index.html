@@ -25,6 +25,7 @@
       <p>Choose your gender:</p>
       <label><input type="radio" name="gender" value="male"> Male</label><br>
       <label><input type="radio" name="gender" value="female"> Female</label><br>
+      <label><input type="radio" name="gender" value="other"> Other</label><br>
 </form>
 
   </div>
@@ -162,6 +163,31 @@
                 tour.next();
               } else {
                 alert('Incorrect password. Please try again.');
+              }
+            }
+          }
+        ]
+      });
+
+      tour.addStep({
+        id: 'select-gender',
+        text: `
+          Please select your gender from the options below.
+          <div style="margin-top: 10px; font-size: 0.8em; color: #666;">Step 1 of 3</div>
+        `,
+        attachTo: {
+          element: '#radio-form',
+          on: 'bottom'
+        },
+        buttons: [
+          {
+            text: 'Next',
+            action: function() {
+              const selected = document.querySelector('input[name="gender"]:checked');
+              if (selected) {
+                tour.next();
+              } else {
+                alert('Please select a gender to continue.');
               }
             }
           }
