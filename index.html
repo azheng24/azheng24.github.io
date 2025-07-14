@@ -96,7 +96,7 @@
         buttons: [
           {
             text: `Let’s Start`,
-            action: tour.next
+            action: function() {speechSynthesis.cancel(), tour.next} 
           }
         ]
       });
