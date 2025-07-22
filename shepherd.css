@@ -1,10 +1,10 @@
 /* Tooltip box */
 .shepherd-element {
-  background: #ffffff; /* white background */
+  background: #1e3da0; /* white background */
   border-radius: 10px;
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
   max-width: 450px;
-  padding: 1rem;
+  padding: 1rem; 
   z-index: 9999;
   color: #d91515; /* black text */
   margin: 100px;
