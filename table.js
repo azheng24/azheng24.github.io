@@ -45,7 +45,7 @@ tour.addStep({
       action: tour.back
     },
     {
-      text: 'Next',
+      text: 'Next', 
       action: function () {
         if (hasSelectedFemale) {
           tour.next();
@@ -208,4 +208,5 @@ function waitForElement(selector, timeout = 10000) {
     }, interval);
   });
 }
+
 
