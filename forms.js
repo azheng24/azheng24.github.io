@@ -362,6 +362,54 @@ tour.addStep({
   }
 });
 
+let hasClickedEditButton = false;
+
+tour.addStep({
+  id: 'click-edit-button',
+  title: 'Edit Student',
+  text: 'Click the <strong>Edit</strong> button to update this student\'s record.',
+  attachTo: {
+    element: '#as_1dfde58336b0a74e37c81ad58f503897-edit-2-link',
+    on: 'bottom'
+  },
+  buttons: [
+    {
+      text: 'Back',
+      action: tour.back
+    },
+    {
+      text: 'Next',
+      action: () => {
+        if (hasClickedEditButton) {
+          tour.next();
+        } else {
+          alert('Please click the "Edit" button before continuing.');
+        }
+      }
+    }
+  ],
+  when: {
+    show: () => {
+      hasClickedEditButton = false;
+
+      const editButton = document.querySelector('#as_1dfde58336b0a74e37c81ad58f503897-edit-2-link');
+      if (editButton) {
+        const handler = () => {
+          hasClickedEditButton = true;
+          editButton.removeEventListener('click', handler);
+
+          setTimeout(() => {
+            if (tour.getCurrentStep().id === 'click-edit-button') {
+              tour.next();
+            }
+          }, 500);
+        };
+
+        editButton.addEventListener('click', handler);
+      }
+    }
+  }
+});
 
 
 

@@ -1,0 +1,49 @@
+const tour = new Shepherd.Tour({
+  useModalOverlay: true,
+  defaultStepOptions: {
+    scrollTo: true,
+    cancelIcon: {
+      enabled: true
+    }
+  }
+});
+<% tutorial.tutorial_steps.each_with_index do |step, index| -%>
+tour.addStep({
+  id: `<%= step.name %>`,
+  title: `<%= step.title %>`,
+  text: `<%= md_render step.text %>`,
+  <% if step.element.present? %>
+  attachTo: {
+    element: `<%=raw step.element %>`,
+    on: `<%= step.location %>`
+  },
+  <% end %>
+  buttons: [
+    <% if index > 0 -%>
+    { text: 'Back', action: tour.back },
+    <% end -%>
+    <% if index < tutorial.tutorial_steps.length - 1 -%>
+    {
+      text: 'Next',
+      action: <% if step.starting_url %>
+      <%
+        uri = URI.parse(step.starting_url)
+        uri.query = [uri.query, "tutorial_id=#{tutorial.id}&tutorial_step=#{tutorial.tutorial_steps[index+1].name}"].compact.join('&')
+      %>
+        function() {
+          window.location.href = "<%=raw uri.to_s %>";
+        }
+      <% else %>
+      tour.next
+      <% end %>
+    }
+    <% else -%>
+    { text: 'Finish', action: tour.complete }
+    <% end -%>
+  ]
+});
+<% end -%>
+tour.start();
+<% if params[:tutorial_step] %>
+tour.show('<%= params[:tutorial_step] %>');
+<% end %>
