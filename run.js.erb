@@ -16,13 +16,8 @@ tour.addStep({
   text: `<%= md_render step.text %>`,
   <% if step.element.present? %>
   attachTo: {
-    element: `<%=raw step.element %>`,
+    element: `<%= raw step.element %>`,
     on: `<%= step.location %>`
-  },
-  <% end %>
-  <% if step.wait_element.present? %>
-  when: {
-    show: () => waitForElement('<%= j step.wait_element %>')
   },
   <% end %>
 
@@ -37,85 +32,93 @@ tour.addStep({
         <% if step.element_type == 'dropdown' %>
         const dropdown = document.querySelector('<%= j step.element %>');
         if (dropdown && dropdown.options[dropdown.selectedIndex].text.trim() === '<%= j step.additional_element %>') {
-            tour.next();
+          tour.next();
         } else {
-            alert('<%= j step.alert_message %>');
+          alert('<%= j step.alert_message %>');
         }
         <% elsif step.element_type == 'button' %>
         const button = document.querySelector('<%= j step.element %>');
         if (button && button.clicked) {
-            tour.next();
+          tour.next();
         } else {
-            alert('<%= j step.alert_message %>');
+          alert('<%= j step.alert_message %>');
         }
         <% elsif step.element_type == 'radio' %>
         const radio = document.querySelector('<%= j step.additional_element %>');
         if (radio && radio.checked) {
-            tour.next();
+          tour.next();
         } else {
-            alert('<%= j step.alert_message %>');
+          alert('<%= j step.alert_message %>');
         }
         <% elsif step.element_type == 'text' %>
         const input = document.querySelector('<%= j step.element %>');
         if (input && input.value.trim() === '<%= j step.additional_element %>') {
-            tour.next();
+          tour.next();
         } else {
-            alert('<%= j step.alert_message %>');
+          alert('<%= j step.alert_message %>');
         }
         <% else %>
-            tour.next();
+        tour.next();
         <% end %>
-        }
       }
     }
     <% else -%>
     { text: 'Finish', action: tour.complete }
     <% end -%>
   ],
-    <% if ['dropdown', 'radio'].include?(step.element_type) %>
+
   when: {
     show: () => {
-      const el = document.querySelector('<%= j step.element %>');
-      if (!el) return;
+      const tasks = [];
 
-      <% if step.element_type == 'dropdown' %>
-      const handler = () => {
-        if (el.options[el.selectedIndex].text.trim() === '<%= j step.additional_element %>') {
-          el.removeEventListener('change', handler);
-          setTimeout(() => {
-            if (tour.getCurrentStep().id === '<%= step.name %>') tour.next();
-          }, 500);
-        }
-      };
-      el.addEventListener('change', handler);
-      <% elsif step.element_type == 'radio' %>
-      const radio = document.querySelector('<%= j step.additional_element %>');
-      if (radio) {
-        const handler = () => {
-          if (radio.checked) {
-            radio.removeEventListener('change', handler);
-            setTimeout(() => {
-              if (tour.getCurrentStep().id === '<%= step.name %>') tour.next();
-            }, 500);
-          }
-        };
-        radio.addEventListener('change', handler);
-      }
+      <% if step.wait_element.present? %>
+      tasks.push(waitForElement('<%= j step.wait_element %>'));
       <% end %>
+
+      const runExtraSetup = () => {
+        <% if step.element_type == 'dropdown' %>
+        const dropdown = document.querySelector('<%= j step.element %>');
+        if (dropdown) {
+          const handler = () => {
+            if (dropdown.options[dropdown.selectedIndex].text.trim() === '<%= j step.additional_element %>') {
+              dropdown.removeEventListener('change', handler);
+              setTimeout(() => {
+                if (tour.getCurrentStep().id === '<%= step.name %>') tour.next();
+              }, 500);
+            }
+          };
+          dropdown.addEventListener('change', handler);
+        }
+        <% elsif step.element_type == 'radio' %>
+        const radio = document.querySelector('<%= j step.additional_element %>');
+        if (radio) {
+          const handler = () => {
+            if (radio.checked) {
+              radio.removeEventListener('change', handler);
+              setTimeout(() => {
+                if (tour.getCurrentStep().id === '<%= step.name %>') tour.next();
+              }, 500);
+            }
+          };
+          radio.addEventListener('change', handler);
+        }
+        <% end %>
+      };
+
+      if (tasks.length > 0) {
+        Promise.all(tasks).then(runExtraSetup).catch(console.error);
+      } else {
+        runExtraSetup();
+      }
     }
   }
-  <% end %>
 });
-
 <% end -%>
 
-<%# Handle delayed start if first step has a wait_element defined %>
+<%# Start tour after first step's wait_element is ready, if applicable %>
 <% first_step = tutorial.tutorial_steps.order(:position).first -%>
 <% if first_step.wait_element.present? -%>
-waitForElement('<%= j first_step.wait_element %>')
-  .then(() => {
-    tour.start();
-  });
+waitForElement('<%= j first_step.wait_element %>').then(() => tour.start());
 <% else -%>
 tour.start();
 <% end -%>
@@ -138,4 +141,3 @@ function waitForElement(selector, timeout = 15000) {
     }, interval);
   });
 }
-
