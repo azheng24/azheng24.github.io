@@ -10,6 +10,8 @@ const tour = new Shepherd.Tour({
 
 <% total_steps = tutorial.tutorial_steps.length -%>
 <% tutorial.tutorial_steps.order(:position).each_with_index do |step, index| -%>
+let hasClicked_<%= step.name %> = false;
+
 tour.addStep({
   id: `<%= step.name %>`,
   title: `<%= step.title %>`,
@@ -37,8 +39,7 @@ tour.addStep({
           alert('<%= raw step.alert_message %>');
         }
         <% elsif step.element_type == 'button' %>
-        const button = document.querySelector('<%= raw step.element %>');
-        if (button && button.clicked) {
+        if (hasClicked_<%= step.name %>) {
           tour.next();
         } else {
           alert('<%= raw step.alert_message %>');
@@ -102,6 +103,18 @@ tour.addStep({
           };
           radio.addEventListener('change', handler);
         }
+        <% elsif step.element_type == 'button' %>
+        const button = document.querySelector('<%= raw step.element %>');
+        if (button) {
+          const handler = () => {
+            hasClicked_<%= step.name %> = true;
+            button.removeEventListener('click', handler);
+            setTimeout(() => {
+              if (tour.getCurrentStep().id === '<%= step.name %>') tour.next();
+            }, 500);
+          };
+          button.addEventListener('click', handler);
+        }
         <% end %>
       };
 
@@ -114,6 +127,7 @@ tour.addStep({
   }
 });
 <% end -%>
+
 
 <% first_step = tutorial.tutorial_steps.order(:position).first -%>
 <% if first_step.wait_element.present? -%>
