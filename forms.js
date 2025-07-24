@@ -87,7 +87,7 @@ tour.addStep({
   },
   when: {
     show: () => {
-      return waitForElement('#as_1dfde58336b0a74e37c81ad58f503897-create--form > h4');
+      return waitForAllSpinnersToDisappear();
     }
   },
   buttons: [
@@ -440,6 +440,31 @@ function waitForElement(selector, timeout = 10000) {
         reject(new Error(`Element "${selector}" not found within ${timeout}ms`));
       }
       waited += interval;
+    }, interval);
+  });
+}
+
+function waitForAllSpinnersToDisappear() {
+  return new Promise((resolve) => {
+    const interval = 100;
+
+    const check = setInterval(() => {
+      const spinners = document.querySelectorAll('.loading-indicator');
+
+      const allGone = Array.from(spinners).every(spinner => {
+        return (
+          spinner.style.visibility === 'hidden' ||
+          spinner.style.display === 'none' ||
+          spinner.offsetParent === null // covers display: none and DOM removal
+        );
+      });
+
+      if (allGone || spinners.length === 0) {
+        clearInterval(check);
+        setTimeout(() => {
+          resolve();
+        }, 250); // wait an extra 250ms for good measure
+      }
     }, interval);
   });
 }
