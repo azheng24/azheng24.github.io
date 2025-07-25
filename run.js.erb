@@ -97,16 +97,17 @@ tour.addStep({
         <% elsif step.element_type == 'radio' %>
         const radio = document.querySelector('<%= raw step.additional_element %>');
         if (radio) {
-          const handler = () => {
+        radio.addEventListener('change', () => {
             if (radio.checked) {
-              radio.removeEventListener('change', handler);
-              setTimeout(() => {
-                if (tour.getCurrentStep().id === '<%= step.name %>') tour.next();
-              }, 500);
+            setTimeout(() => {
+                if (tour.getCurrentStep().id === '<%= step.name %>') {
+                tour.next();
+                }
+            }, 300); // slight delay to allow UI update
             }
-          };
-          radio.addEventListener('change', handler);
+        });
         }
+
 
         <% elsif step.element_type == 'button' %>
         const button = document.querySelector('<%= raw step.element %>');
