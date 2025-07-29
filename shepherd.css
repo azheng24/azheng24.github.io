@@ -7,7 +7,7 @@
   padding: 1rem; 
   z-index: 9999;
   color: #000000; /* black text */
-  margin: 20px;
+  margin: 12px 0;
 }
 
 /* Buttons inside tooltip */
@@ -67,4 +67,14 @@
 
 .shepherd-cancel-icon:hover {
   color: #333;
+}
+
+.shepherd-highlight {
+  border: 3px solid #00274D; /* dark navy blue */
+  border-radius: 6px;
+  box-shadow: 0 0 10px rgba(0, 39, 77, 0.6); /* subtle dark blue glow */
+  background-color: rgba(0, 39, 77, 0.05);   /* optional: faint background tint */
+  transition: box-shadow 0.3s ease, border 0.3s ease;
+  position: relative;
+  z-index: 10000;
 }
